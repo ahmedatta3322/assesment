@@ -3,8 +3,9 @@ import List from "./components/List";
 import React, { useState } from "react";
 import data from "./data.json";
 import DataRow from "./components/DataRow";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "./styles/styles.css";
+
 function App() {
   const [items, setItems] = useState(data);
 
@@ -24,7 +25,14 @@ function App() {
           <h4>Subject</h4>
         </Col>
         <Col className={"header-column"}>
-          <h4>Description</h4>
+          <Row>
+            <Col>
+              <h4>Description</h4>
+            </Col>
+            <Col>
+              <Button>Create new Ticket</Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
       <List

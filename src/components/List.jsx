@@ -3,12 +3,13 @@ import "../styles/styles.css";
 const List = (props) => {
   const { numItems, itemHeight, renderItem, windowHeight } = props;
   const [scrollTop, setScrollTop] = useState(0);
-
+  const num_buffered_rows = 2;
   const innerHeight = numItems * itemHeight;
-  const startIndex = Math.floor(scrollTop / itemHeight);
+  const startIndex = Math.max(Math.floor(scrollTop / itemHeight - num_buffered_rows),0)
+
   const endIndex = Math.min(
-    numItems - 1, // don't render past the end of the list
-    Math.floor((scrollTop + windowHeight) / itemHeight)
+    numItems - 1,
+    Math.floor((scrollTop + windowHeight) / itemHeight + num_buffered_rows)
   );
 
   const items = [];
@@ -25,14 +26,13 @@ const List = (props) => {
       })
     );
   }
-  for (let i = startIndex; i <= endIndex; i++) {}
 
   const onScroll = (e) => setScrollTop(e.currentTarget.scrollTop);
 
   return (
     <div className="scroll" onScroll={onScroll}>
-      <div style={{  height: `${innerHeight}px` , position: "relative" }}>
-      {items}
+      <div style={{ height: `${innerHeight}px`, position: "relative" }}>
+        {items}
       </div>
     </div>
   );
