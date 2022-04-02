@@ -1,14 +1,18 @@
 import "./App.css";
 import List from "./components/List";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import data from "./data.json";
 import DataRow from "./components/DataRow";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./styles/styles.css";
+import CreateTickerModal from "./modals/CreateTickerModal";
 
 function App() {
   const [items, setItems] = useState(data);
-
+  const [isOpen, openModal] = useState(false);
+  const handleClose = () => {
+    openModal(false);
+  };
   return (
     <Container fluid className="data-container ">
       <Row className={"data-header"}>
@@ -30,7 +34,15 @@ function App() {
               <h4>Description</h4>
             </Col>
             <Col>
-              <Button>Create new Ticket</Button>
+              <Button
+                data-toggle="modal"
+                data-target="#create-ticket"
+                onClick={() => {
+                  openModal(true);
+                }}
+              >
+                Create new Ticket
+              </Button>
             </Col>
           </Row>
         </Col>
@@ -55,7 +67,10 @@ function App() {
           );
         }}
       />
-      ;
+      <CreateTickerModal
+        show={isOpen}
+        handleClose={handleClose}
+      ></CreateTickerModal>
     </Container>
   );
 }
