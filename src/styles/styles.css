@@ -1,0 +1,39 @@
+.scroll {
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.row:nth-child(even) {
+  background-color: lightgrey;
+}
+
+.row:nth-child(odd) {
+  background-color: white;
+}
+
+.data-row {
+  border-style: none none solid none;
+  height: 80px;
+  width: 100vh;
+}
+.data-header {
+  border-style: none none solid none;
+  height: 80px;
+  align-content: center;
+  
+}
+.data-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.data-column {
+  border-style: none none none solid;
+
+}
+.header-column {
+ text-align: center;
+  align-content: center;
+  justify-content: center;
+}
