@@ -1,16 +1,36 @@
 import "./App.css";
 import List from "./components/List";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import data from "./data.json";
 import DataRow from "./components/DataRow";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./styles/styles.css";
-import CreateTickerModal from "./modals/CreateTickerModal";
+import TicketModal from "./modals/TicketModal";
 
 function App() {
+  //Data mock file can be found in data.json in the main directory
   const [items, setItems] = useState(data);
   const [isOpen, openModal] = useState(false);
-  const handleClose = () => {
+
+  //A callback Used to Render visible part of the list using styling
+  const renderItems = ({ index, style }) => {
+    const i = items[index];
+    return (
+      <DataRow
+        ticketData={{
+          id: i.id,
+          description: i.description,
+          priority: i.priority,
+          status: i.status,
+          subject: i.subject,
+        }}
+        style={style}
+      />
+    );
+  };
+  // A callback to handle model closing and data adding
+  const handleClose = (data, isEdit) => {
+    setItems([...items, data]);
     openModal(false);
   };
   return (
@@ -40,6 +60,7 @@ function App() {
                 onClick={() => {
                   openModal(true);
                 }}
+                size="lg"
               >
                 Create new Ticket
               </Button>
@@ -49,28 +70,15 @@ function App() {
       </Row>
       <List
         numItems={items.length}
-        itemHeight={80}
+        itemHeight={150}
         windowHeight={window.innerHeight}
-        renderItem={({ index, style }) => {
-          const i = items[index];
-          return (
-            <DataRow
-              ticketData={{
-                id: i.id,
-                description: i.description,
-                priority: i.priority,
-                status: i.status,
-                subject: i.subject,
-              }}
-              style={style}
-            />
-          );
-        }}
+        renderItem={renderItems}
       />
-      <CreateTickerModal
+      <TicketModal
         show={isOpen}
         handleClose={handleClose}
-      ></CreateTickerModal>
+        count={items.length + 1}
+      ></TicketModal>
     </Container>
   );
 }

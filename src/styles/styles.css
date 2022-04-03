@@ -10,31 +10,42 @@
 }
 
 .row:nth-child(odd) {
-  background-color: white;
+  background-color: lightcyan;
 }
 
 .data-row {
-  border-style: none none solid none;
-  height: 80px;
+  border-style: none solid solid none;
+  height: 150px;
   width: 100vh;
 }
 .data-header {
+  width: 99vw;
   border-style: none none solid none;
   height: 80px;
   align-content: center;
+  background-color: white !important;
   
 }
 .data-container {
+  margin-top: 2vh;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 .data-column {
   border-style: none none none solid;
   font-size: 1.5vw;
-
+  text-align: justify;
 }
 .header-column {
- text-align: center;
+  
+  height: 100%;
+  text-align: center;
   align-content: center;
   justify-content: center;
+}
+.edit_button {
+  position: absolute;
+  right: 60px;
+  bottom: 50px;
+  width: 15vw;
 }
