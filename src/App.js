@@ -34,7 +34,7 @@ function App() {
     openModal(false);
   };
   return (
-    <Container fluid className="data-container ">
+    <Container fluid className="data-container">
       <Row className={"data-header"}>
         <Col xs={1} className={"header-column"}>
           <h4>ID</h4>
